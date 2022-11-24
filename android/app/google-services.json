@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "37605796063",
+    "project_id": "bag-app-be438",
+    "storage_bucket": "bag-app-be438.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:37605796063:android:4bae7e22f4aa0ba9a7616a",
+        "android_client_info": {
+          "package_name": "com.julian.bag_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "37605796063-tbtl9totp9icjq1tlhn44qgfbki2ur5l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAni0jzrQhD7NIv_l9h4VaJETyM6PoNaSU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "37605796063-tbtl9totp9icjq1tlhn44qgfbki2ur5l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
