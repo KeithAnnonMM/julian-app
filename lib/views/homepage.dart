@@ -14,6 +14,11 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Row(children: const [
+          Image(image: AssetImage('assets/r.png')),
+        ]),
+      ),
       body: Center(
         child: GestureDetector(
           onTap: () async {
