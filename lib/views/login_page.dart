@@ -1,8 +1,12 @@
+import 'package:bag_app/main.dart';
+import 'package:bag_app/models/auth.dart';
 import 'package:bag_app/responsive/res.dart';
+import 'package:bag_app/widgets/reusable_text.dart';
 import 'package:bag_app/widgets/reusable_textformfield.dart';
 import 'package:bag_app/widgets/submit_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Login extends StatefulWidget {
   final FirebaseAuth auth;
@@ -16,6 +20,13 @@ class _LoginState extends State<Login> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
+  bool isPassword = true;
+
+  void isPasswordType() {
+    setState(() {
+      isPassword = !isPassword;
+    });
+  }
 
   String? validateEmail(String? formEmail) {
     if (formEmail == null || formEmail.isEmpty) return 'Email can not be empty';
@@ -38,36 +49,113 @@ class _LoginState extends State<Login> {
     Responsive res = Responsive(context: context);
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(30.0, 220.0, 30.0, 20.0),
-          child: Form(
-            key: _key,
-            child: Column(
-              children: [
-                const Image(image: AssetImage('assets/k.png')),
-                reusableTextField('Email Address', _emailController, false,
-                    const Icon(Icons.person), validateEmail, res),
-                const SizedBox(height: 15),
-                reusableTextField('Password', _passwordController, true,
-                    const Icon(Icons.lock), validatePassword, res),
-                const SizedBox(height: 20),
-                signInsignUp(context, res, 'LOGIN', () {}),
-                const SizedBox(height: 15),
-                GestureDetector(
-                  onTap: () {},
-                  child: const Text(
-                    'Create New Account',
-                    style: TextStyle(fontSize: 17),
+      body: Padding(
+        padding: EdgeInsets.fromLTRB(res.getWidth(100), res.getWidth(300),
+            res.getWidth(100), res.getWidth(400)),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Image(
+                image: const AssetImage('assets/k.png'),
+                //height: res.getHeight(100),
+                width: res.getWidth(700),
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                    left: res.getWidth(10), right: res.getWidth(10)),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.grey,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  padding: EdgeInsets.all(res.getWidth(70)),
+                  child: Form(
+                    key: _key,
+                    child: Column(
+                      children: [
+                        SizedBox(height: res.getHeight(30)),
+                        reusableTextField(
+                            'Email Address',
+                            _emailController,
+                            false,
+                            const Icon(Icons.person),
+                            validateEmail,
+                            res),
+                        const SizedBox(height: 15),
+                        Padding(
+                          padding: EdgeInsets.only(right: res.getWidth(20)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              GestureDetector(
+                                onTap: isPasswordType,
+                                child: returnText(
+                                    text: isPassword
+                                        ? 'Show Password'
+                                        : 'Hide Password',
+                                    color: Colors.white,
+                                    isHeading: false,
+                                    res: res,
+                                    size: res.getWidth(170)),
+                              ),
+                            ],
+                          ),
+                        ),
+                        reusableTextField(
+                            'Password',
+                            _passwordController,
+                            isPassword,
+                            const Icon(Icons.lock),
+                            validatePassword,
+                            res),
+                        const SizedBox(height: 20),
+                        signInsignUp(context, res, 'LOGIN', () async {
+                          if (_key.currentState!.validate()) {
+                            String result =
+                                await Auth(auth: widget.auth).signInUser(
+                              email: _emailController.text,
+                              password: _passwordController.text,
+                            );
+                            if (result == 'Success') {
+                              Get.snackbar('Alert', 'Logged in successfully');
+                            } else {
+                              Get.snackbar('ALERT', result);
+                            }
+                          }
+                        }),
+                        const SizedBox(height: 15),
+                        GestureDetector(
+                          onTap: () async {
+                            if (_key.currentState!.validate()) {
+                              String message =
+                                  await Auth(auth: widget.auth).createAccount(
+                                email: _emailController.text,
+                                password: _passwordController.text,
+                              );
+                              if (message == 'Success') {
+                                Get.snackbar(
+                                    'Alert', 'Account Created successfully');
+                              } else {
+                                Get.snackbar('Alert', message);
+                              }
+                            }
+                          },
+                          child: const Text(
+                            'Create New Account',
+                            style: TextStyle(fontSize: 17),
+                          ),
+                        ),
+                        const SizedBox(height: 80),
+                        const Text(
+                          'Coded By Keith Jason',
+                          style: TextStyle(fontSize: 12),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-                const SizedBox(height: 170),
-                const Text(
-                  'Coded By Keith Jason',
-                  style: TextStyle(fontSize: 12),
-                )
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

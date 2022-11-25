@@ -23,9 +23,6 @@ class MyApp extends StatelessWidget {
       title: 'Julian\'s App',
       theme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
-      routes: {
-        '/getStarted': (context) => Root(),
-      },
       home: FutureBuilder(
           future: _initialization,
           builder: ((context, snapshot) {
@@ -56,7 +53,7 @@ class Root extends StatelessWidget {
             if (snapshot.data?.uid == null) {
               return Login(auth: _auth);
             } else {
-              return const Homepage();
+              return Homepage(auth: _auth);
             }
           }
           return const Loading();

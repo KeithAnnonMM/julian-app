@@ -37,8 +37,7 @@ class Auth {
     }
   }
 
-  Future<String> signOutUser(
-      {required String email, required String password}) async {
+  Future<String> signOutUser() async {
     try {
       await auth.signOut();
       return "Success";
