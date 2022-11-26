@@ -26,7 +26,7 @@ class _WelcomePageState extends State<WelcomePage> {
             children: [
               SizedBox(height: res.getHeight(180)),
               Image(
-                image: const AssetImage('assets/r.png'),
+                image: const AssetImage('assets/lv.png'),
                 width: res.getWidth(1000),
               ),
               Padding(
@@ -34,7 +34,7 @@ class _WelcomePageState extends State<WelcomePage> {
                     left: res.getWidth(30), right: res.getWidth(30)),
                 child: returnText(
                   text: "Great Way to Lift\nUp your Lifestyle",
-                  color: Colors.white,
+                  color: const Color(0xFF4C53a5),
                   isHeading: true,
                   res: res,
                   size: 180,
@@ -47,7 +47,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   text:
                       "Step up your fashion game with Julian's HandBags\nFor your best bag solutions with the best pricing..",
                   color: Colors.grey,
-                  isHeading: true,
+                  isHeading: false,
                   res: res,
                   size: 60,
                 ),
@@ -59,7 +59,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 child: signInsignUp(context, res, 'Get Started', () {
                   Navigator.of(context)
                       .push(MaterialPageRoute(builder: (context) => Root()));
-                }),
+                }, true),
               )
             ],
           ),

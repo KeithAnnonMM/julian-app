@@ -55,17 +55,14 @@ class _LoginState extends State<Login> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Image(
-                image: const AssetImage('assets/k.png'),
-                //height: res.getHeight(100),
-                width: res.getWidth(700),
-              ),
               Padding(
                 padding: EdgeInsets.only(
-                    left: res.getWidth(10), right: res.getWidth(10)),
+                    left: res.getWidth(10),
+                    right: res.getWidth(10),
+                    top: res.getHeight(150)),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Colors.grey,
+                    color: const Color(0xFF4C53A5),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   padding: EdgeInsets.all(res.getWidth(70)),
@@ -78,7 +75,7 @@ class _LoginState extends State<Login> {
                             'Email Address',
                             _emailController,
                             false,
-                            const Icon(Icons.person),
+                            const Icon(Icons.person, color: Colors.white),
                             validateEmail,
                             res),
                         const SizedBox(height: 15),
@@ -105,7 +102,10 @@ class _LoginState extends State<Login> {
                             'Password',
                             _passwordController,
                             isPassword,
-                            const Icon(Icons.lock),
+                            const Icon(
+                              Icons.lock,
+                              color: Colors.white,
+                            ),
                             validatePassword,
                             res),
                         const SizedBox(height: 20),
@@ -122,7 +122,7 @@ class _LoginState extends State<Login> {
                               Get.snackbar('ALERT', result);
                             }
                           }
-                        }),
+                        }, false),
                         const SizedBox(height: 15),
                         GestureDetector(
                           onTap: () async {
@@ -142,13 +142,13 @@ class _LoginState extends State<Login> {
                           },
                           child: const Text(
                             'Create New Account',
-                            style: TextStyle(fontSize: 17),
+                            style: TextStyle(fontSize: 17, color: Colors.white),
                           ),
                         ),
                         const SizedBox(height: 80),
                         const Text(
                           'Coded By Keith Jason',
-                          style: TextStyle(fontSize: 12),
+                          style: TextStyle(fontSize: 12, color: Colors.white),
                         )
                       ],
                     ),

@@ -12,5 +12,6 @@ Text returnText(
       style: GoogleFonts.poppins(
         color: color,
         fontSize: isHeading ? res.getWidth(size) : res.getWidth(size),
+        fontWeight: isHeading ? FontWeight.bold : FontWeight.normal,
       ));
 }

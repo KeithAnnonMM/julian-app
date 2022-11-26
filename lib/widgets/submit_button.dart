@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:bag_app/responsive/res.dart';
 
-Container signInsignUp(
-    BuildContext context, Responsive res, String text, Function ontap) {
+Container signInsignUp(BuildContext context, Responsive res, String text,
+    Function ontap, bool isHome) {
   return Container(
     width: MediaQuery.of(context).size.width,
     height: res.getHeight(70),
@@ -17,7 +17,7 @@ Container signInsignUp(
               if (states.contains(MaterialState.pressed)) {
                 return Colors.black;
               }
-              return Colors.white;
+              return isHome ? const Color(0xFF4C53a5) : Colors.white;
             }),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
@@ -25,7 +25,7 @@ Container signInsignUp(
         child: Text(
           text,
           style: GoogleFonts.poppins(
-              color: Colors.black87,
+              color: isHome ? Colors.white : Colors.black87,
               fontWeight: FontWeight.bold,
               fontSize: res.getWidth(60)),
         )),
