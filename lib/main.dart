@@ -1,4 +1,5 @@
 import 'package:bag_app/models/auth.dart';
+import 'package:bag_app/views/cart_page.dart';
 import 'package:bag_app/views/homepage.dart';
 import 'package:bag_app/views/loading.dart';
 import 'package:bag_app/views/login_page.dart';
@@ -23,6 +24,9 @@ class MyApp extends StatelessWidget {
       title: 'Julian\'s App',
       theme: ThemeData(scaffoldBackgroundColor: Colors.white),
       debugShowCheckedModeBanner: false,
+      routes: {
+        '/cart': (context) => const CartItemsPage(),
+      },
       home: FutureBuilder(
           future: _initialization,
           builder: ((context, snapshot) {

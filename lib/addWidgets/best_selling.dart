@@ -15,13 +15,41 @@ class _BestSellingItemsState extends State<BestSellingItems> {
   List<bool> isFav = [false, false, false, false, false, false, false];
 
   List<Item> items = [
-    Item(name: 'Louis Vuitton', image: 'assets/lv.png', discount: '-20%'),
-    Item(name: 'Keira Milla', image: 'assets/km.png', discount: '-15%'),
-    Item(name: 'Prada', image: 'assets/prada.png', discount: '-50%'),
-    Item(name: 'Gucci', image: 'assets/gucci.png', discount: '-5%'),
-    Item(name: 'Portable', image: 'assets/port.png', discount: '-10%'),
-    Item(name: 'Simple', image: 'assets/simple.png', discount: '-25%'),
-    Item(name: 'Italian', image: 'assets/italia.png', discount: '-12%')
+    Item(
+        name: 'Louis Vuitton',
+        image: 'assets/lv.png',
+        discount: '-20%',
+        price: '\$54'),
+    Item(
+        name: 'Keira Milla',
+        image: 'assets/km.png',
+        discount: '-15%',
+        price: '\$45'),
+    Item(
+        name: 'Prada',
+        image: 'assets/prada.png',
+        discount: '-50%',
+        price: '\$50'),
+    Item(
+        name: 'Gucci',
+        image: 'assets/gucci.png',
+        discount: '-5%',
+        price: '\$34'),
+    Item(
+        name: 'Portable',
+        image: 'assets/port.png',
+        discount: '-10%',
+        price: '\$22'),
+    Item(
+        name: 'Simple',
+        image: 'assets/simple.png',
+        discount: '-25%',
+        price: '\$21'),
+    Item(
+        name: 'Italian',
+        image: 'assets/italia.png',
+        discount: '-12%',
+        price: '\$14')
   ];
 
   @override
@@ -121,7 +149,7 @@ class _BestSellingItemsState extends State<BestSellingItems> {
                       margin: EdgeInsets.symmetric(
                           horizontal: widget.res.getWidth(20)),
                       child: returnText(
-                        text: '\$55',
+                        text: items[i].price,
                         color: const Color(0xFF4C53A5),
                         isHeading: true,
                         res: widget.res,

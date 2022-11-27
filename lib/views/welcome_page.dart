@@ -18,52 +18,56 @@ class _WelcomePageState extends State<WelcomePage> {
   Widget build(BuildContext context) {
     Responsive res = Responsive(context: context);
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(res.getWidth(30), res.getHeight(50),
-              res.getWidth(30), res.getHeight(10)),
-          child: Column(
-            children: [
-              SizedBox(height: res.getHeight(180)),
-              Image(
-                image: const AssetImage('assets/lv.png'),
-                width: res.getWidth(1000),
+      body: ListView(
+        children: [
+          SafeArea(
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(res.getWidth(30), res.getHeight(50),
+                  res.getWidth(30), res.getHeight(10)),
+              child: Column(
+                children: [
+                  SizedBox(height: res.getHeight(180)),
+                  Image(
+                    image: const AssetImage('assets/lv.png'),
+                    width: res.getWidth(1000),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                        left: res.getWidth(30), right: res.getWidth(30)),
+                    child: returnText(
+                      text: "Great Way to Lift\nUp your Lifestyle",
+                      color: const Color(0xFF4C53a5),
+                      isHeading: true,
+                      res: res,
+                      size: 180,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                        left: res.getWidth(30), right: res.getWidth(30)),
+                    child: returnText(
+                      text:
+                          "Step up your fashion game with Julian's HandBags\nFor your best bag solutions with the best pricing..",
+                      color: Colors.grey,
+                      isHeading: false,
+                      res: res,
+                      size: 60,
+                    ),
+                  ),
+                  SizedBox(height: res.getHeight(30)),
+                  Padding(
+                    padding: EdgeInsets.only(
+                        left: res.getWidth(30), right: res.getWidth(30)),
+                    child: signInsignUp(context, res, 'Get Started', () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => Root()));
+                    }, true),
+                  )
+                ],
               ),
-              Padding(
-                padding: EdgeInsets.only(
-                    left: res.getWidth(30), right: res.getWidth(30)),
-                child: returnText(
-                  text: "Great Way to Lift\nUp your Lifestyle",
-                  color: const Color(0xFF4C53a5),
-                  isHeading: true,
-                  res: res,
-                  size: 180,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                    left: res.getWidth(30), right: res.getWidth(30)),
-                child: returnText(
-                  text:
-                      "Step up your fashion game with Julian's HandBags\nFor your best bag solutions with the best pricing..",
-                  color: Colors.grey,
-                  isHeading: false,
-                  res: res,
-                  size: 60,
-                ),
-              ),
-              SizedBox(height: res.getHeight(30)),
-              Padding(
-                padding: EdgeInsets.only(
-                    left: res.getWidth(30), right: res.getWidth(30)),
-                child: signInsignUp(context, res, 'Get Started', () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) => Root()));
-                }, true),
-              )
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

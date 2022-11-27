@@ -18,7 +18,7 @@ class HomeAppBar extends StatelessWidget {
           Icon(
             Icons.sort,
             color: const Color(0xFF4C53A5),
-            size: res.getWidth(150),
+            size: res.getWidth(120),
           ),
           Padding(
             padding: EdgeInsets.only(
@@ -33,7 +33,7 @@ class HomeAppBar extends StatelessWidget {
           ),
           const Spacer(),
           Badge(
-            badgeColor: Colors.red,
+            badgeColor: int.parse(badgeValue) == 0 ? Colors.white : Colors.red,
             padding: const EdgeInsets.all(8),
             badgeContent: returnText(
               text: badgeValue,
@@ -43,7 +43,9 @@ class HomeAppBar extends StatelessWidget {
               size: 50,
             ),
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, '/cart');
+              },
               icon: Icon(
                 Icons.shopping_bag_rounded,
                 size: res.getWidth(100),

@@ -2,9 +2,11 @@ import 'package:bag_app/addWidgets/best_selling.dart';
 import 'package:bag_app/addWidgets/categories.dart';
 import 'package:bag_app/addWidgets/home_app_bar.dart';
 import 'package:bag_app/models/auth.dart';
+import 'package:bag_app/models/item.dart';
 import 'package:bag_app/responsive/res.dart';
 import 'package:bag_app/widgets/reusable_text.dart';
 import 'package:bag_app/widgets/reusable_text.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,6 +22,7 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> {
   int value = 2;
   final _searchController = TextEditingController();
+  List<Item> cartItems = [];
 
   String? validate(String? searchData) {
     return null;
@@ -31,7 +34,10 @@ class _HomepageState extends State<Homepage> {
     return Scaffold(
       body: ListView(
         children: [
-          HomeAppBar(res: res, badgeValue: value.toString()),
+          HomeAppBar(
+            res: res,
+            badgeValue: value.toString(),
+          ),
           Container(
             decoration: const BoxDecoration(
               color: Color(0xFFEDECF2),
@@ -106,6 +112,28 @@ class _HomepageState extends State<Homepage> {
                 BestSellingItems(res: res),
               ],
             ),
+          )
+        ],
+      ),
+      bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: Colors.transparent,
+        color: const Color(0xFF4C53A5),
+        height: res.getHeight(70),
+        items: [
+          Icon(
+            Icons.home,
+            color: Colors.white,
+            size: res.getWidth(70),
+          ),
+          Icon(
+            Icons.shopping_cart,
+            color: Colors.white,
+            size: res.getWidth(70),
+          ),
+          Icon(
+            Icons.list_alt,
+            color: Colors.white,
+            size: res.getWidth(70),
           )
         ],
       ),
