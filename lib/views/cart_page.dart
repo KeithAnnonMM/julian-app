@@ -11,11 +11,9 @@ class CartItemsPage extends StatefulWidget {
 }
 
 class _CartItemsPageState extends State<CartItemsPage> {
-  Map data = {};
   @override
   Widget build(BuildContext context) {
     Responsive res = Responsive(context: context);
-    data = ModalRoute.of(context)!.settings.arguments as Map;
     return Scaffold(
         body: ListView(
       children: [
@@ -28,17 +26,6 @@ class _CartItemsPageState extends State<CartItemsPage> {
               topLeft: Radius.circular(18),
               topRight: Radius.circular(18),
             ),
-          ),
-          child: Column(
-            children: [
-              for (int i = 0; i < data['cartList'].length; i++)
-                CartItemSamples(
-                  res: res,
-                  name: data['cartList'][i].name,
-                  price: data['cartList'][i].price,
-                  image: data['cartList'][i].image,
-                )
-            ],
           ),
         )
       ],
